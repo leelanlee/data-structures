@@ -1,7 +1,7 @@
 
 
 // Instantiate a new graph
-var Graph = function(val) {
+var Graph = function() {
 };
 
 // Add a node to the graph, passing in the node's value.
@@ -23,7 +23,12 @@ Graph.prototype.contains = function(node) {
 Graph.prototype.removeNode = function(node) {
 // iterate thru Graph
   for (var key in this) {
-  //    if a key equals node
+    if (!Array.isArray(this[key])) { continue; }
+    var idx = this[key].indexOf(node);
+    if (idx !== -1) {
+      this[key].splice(idx, 1);
+    }
+    //    if a key equals node
     if (+key === node) { delete this[key]; }
   //      delete that property
   }
@@ -33,11 +38,7 @@ Graph.prototype.removeNode = function(node) {
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
   //  if both nodes contain each other
-  var from = this[fromNode].indexOf(toNode) !== -1;
-  var to = this[toNode].indexOf(fromNode) !== -1;
-  return from && to;
-  //    return true
-  //  otherwises return false
+  return this[fromNode].indexOf(toNode) !== -1;
 };
 
 // Connects two nodes in a graph by adding an edge between them.
@@ -50,29 +51,23 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
   this[toNode].push(fromNode);
 };
 
-// Remove an edge between any two specified (by value) nodes.
+
 Graph.prototype.removeEdge = function(fromNode, toNode) {
-//
+  var toIdx = this[fromNode].indexOf(toNode);
+  var fromIdx = this[toNode].indexOf(fromNode);
+  if (toIdx === -1 || fromIdx === -1) { return null; }
+  this[fromNode].splice(toIdx, 1);
+  this[toNode].splice(fromIdx, 1);
+
 };
 
-// Pass in a callback which will be executed on each node of the graph.
+
 Graph.prototype.forEachNode = function(cb) {
+  for (var key in this) {
+    if (typeof this[key] === 'function') { continue; }
+    cb(+key);
+  }
 };
 
-/*
- * Complexity: What is the time complexity of the above functions?
- *
-
-
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
-
-
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
 
 
