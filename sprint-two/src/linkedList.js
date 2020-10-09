@@ -5,41 +5,31 @@ var LinkedList = function() {
 
   list.addToTail = function(value) {
     var node = new Node(value);
-    var current;
     if (list.head === null) {
       list.head = node;
-      list.tail = node;
+    } else if (list.head === list.tail) {
+      list.head.next = node;
     } else {
-      current = list.head;
-
-      while (current.next) {
-        current = current.next;
-      }
-      list.tail = node;
-      current.next = list.tail;
-
+      list.tail.next = node;
     }
+    list.tail = node;
   };
 
   list.removeHead = function() {
-    if (list.head === null) {
-      return null;
-    }
-    var currentHead = list.head;
-    list.head = list.head.next;
-    return currentHead.value;
-
+    var newHead = list.head.next;
+    var oldHeadValue = list.head.value;
+    list.head = newHead;
+    return oldHeadValue;
   };
 
   list.contains = function(target) {
-    current = list.head;
-    var ifTrue = false;
+    var current = list.head;
+
     while (current !== null) {
-      if (current.value === target) {
-        ifTrue = true;
-      }
+      if (current.value === target) { return true; }
       current = current.next;
-    } return ifTrue;
+    }
+    return false;
   };
 
   return list;
