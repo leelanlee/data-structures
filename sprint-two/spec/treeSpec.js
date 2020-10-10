@@ -2,7 +2,7 @@ describe('tree', function() {
   var tree;
 
   beforeEach(function() {
-    tree = Tree();
+    tree = new Tree();
   });
 
   it('should have methods named "addChild" and "contains", and a property named "value"', function() {
@@ -41,6 +41,7 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  // add more tests here to test the functionality of Tree
   it ('should correctly detect nested four levels deep children', function() {
     tree.addChild(5);
     tree.addChild(6);
@@ -51,6 +52,5 @@ describe('tree', function() {
     expect(tree.contains(12)).to.equal(true);
 
   });
-
 
 });

@@ -25,7 +25,6 @@ Tree.prototype.contains = function(target) { // time complexity: linear
   return hasTarget;
 };
 
-
 /*
  * Complexity: What is the time complexity of the above functions?
  */

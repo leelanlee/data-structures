@@ -30,8 +30,10 @@ describe('set', function() {
     set.add('Mel Gibson');
     set.add('Mel Gibson');
     var counter = 0;
-    for (let key in set) {
-      counter++;
+    for (let key in set._storage) {
+      if (typeof set._storage[key] === 'string') {
+        counter++;
+      }
     }
     expect(counter).to.equal(3);
   });

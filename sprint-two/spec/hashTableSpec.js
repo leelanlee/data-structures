@@ -2,6 +2,8 @@ describe('hashTable', function() {
   var hashTable;
   var people = [['Steven', 'Tyler'], ['George', 'Harrison'], ['Mr.', 'Doob'], ['Dr.', 'Sunshine'], ['John', 'Resig'], ['Brendan', 'Eich'], ['Alan', 'Turing']];
 
+  var Nine = [['Steven', 'Tyler'], ['George', 'Harrison'], ['Mr.', 'Doob'], ['Dr.', 'Sunshine'], ['John', 'Resig'], ['Brendan', 'Eich'], ['Alan', 'Turing'], ['Barack', 'Obama'], ['Euler, Problems']];
+
 
   beforeEach(function() {
     hashTable = new HashTable();
