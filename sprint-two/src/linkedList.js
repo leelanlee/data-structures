@@ -3,8 +3,9 @@ var LinkedList = function() {
   list.head = null;
   list.tail = null;
 
-  list.addToTail = function(value) {
+  list.addToTail = function(value) { // time complexity: constant
     var node = new Node(value);
+
     if (list.head === null) {
       list.head = node;
     } else if (list.head === list.tail) {
@@ -12,23 +13,24 @@ var LinkedList = function() {
     } else {
       list.tail.next = node;
     }
+
     list.tail = node;
   };
 
-  list.removeHead = function() {
-    var newHead = list.head.next;
-    var oldHeadValue = list.head.value;
-    list.head = newHead;
-    return oldHeadValue;
+  list.removeHead = function() { // time complexity: constant
+    var oldHead = list.head.value;
+    list.head = list.head.next;
+    return oldHead;
   };
 
-  list.contains = function(target) {
-    var current = list.head;
+  list.contains = function(target) { // time complexity: linear
+    var node = list.head;
 
-    while (current !== null) {
-      if (current.value === target) { return true; }
-      current = current.next;
+    while (node !== null) {
+      if (node.value === target) { return true; }
+      node = node.next;
     }
+
     return false;
   };
 
@@ -36,10 +38,6 @@ var LinkedList = function() {
 };
 
 var Node = function(value) {
-  var node = {};
-
-  node.value = value;
-  node.next = null;
-
-  return node;
+  this.value = value;
+  this.next = null;
 };

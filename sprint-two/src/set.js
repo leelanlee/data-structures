@@ -6,20 +6,14 @@ var Set = function() {
 
 var setPrototype = {};
 
-setPrototype.add = function(item) {
-  if (this._storage[item] === undefined) {
-    this._storage[item] = item;
-  }
+setPrototype.add = function(item) { // time complexity: constant
+  this._storage[item] = item;
 };
 
-setPrototype.contains = function(item) {
+setPrototype.contains = function(item) { // time complexity: constant
   return this._storage[item] !== undefined;
 };
 
-setPrototype.remove = function(item) {
+setPrototype.remove = function(item) { // time complexity: constant
   delete this._storage[item];
 };
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */

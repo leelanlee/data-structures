@@ -1,37 +1,30 @@
 var Tree = function(value) {
-  var newTree = {};
-  newTree.value = value;
-
-  newTree.children = [];
-  _.extend(newTree, treeMethods);
-  return newTree;
+  this.value = value;
+  this.children = [];
 };
 
-var treeMethods = {};
-
-treeMethods.addChild = function(value) {
+Tree.prototype.addChild = function(value) { // time complexity: constant
   var child = new Tree(value);
   this.children.push(child);
 };
 
-treeMethods.contains = function(target) {
-  var result = false;
+Tree.prototype.contains = function(target) { // time complexity: linear
+  var hasTarget = false;
 
-  var hasTarget = function(tree) {
-    if (tree.value === target) {
-      result = true;
-    }
-    if (tree.children.length > 0) {
+  var checkValue = function(children) {
+    if (hasTarget) { return; }
 
-      _.each(tree.children, function(child) {
-        hasTarget(child);
-      });
+    _.each(children, function(child) {
+      if (child.value === target) { hasTarget = true; }
+      checkValue(child.children);
+    });
 
-    }
   };
-  hasTarget(this);
-  return result;
+
+  checkValue(this.children);
+  return hasTarget;
 };
+
 
 /*
  * Complexity: What is the time complexity of the above functions?

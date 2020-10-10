@@ -1,5 +1,4 @@
-// decided to implement es6
-// update spec to handle es6 pattern
+// Specs have been updated to handle es6 instantiation pattern
 
 class BinarySearchTree {
   constructor (value) {
@@ -8,7 +7,7 @@ class BinarySearchTree {
     this.right = null; // larger than current node value
   }
 
-  insert(value) {
+  insert(value) { // time complexity: logarithmic
     var newTree = new BinarySearchTree(value);
 
     var checkChild = function(child) {
@@ -18,31 +17,31 @@ class BinarySearchTree {
         child.left ? checkChild(child.left) : child.left = newTree;
       }
     };
+
     checkChild(this);
   }
 
-  contains(value) {
+  contains(value) { // time complexity: logarithmic
     var result = false;
 
     var checkValue = function (child) {
-      if (child === null) { return null; }
-      if (value === child.value) {
-        result = true;
-        return null;
-      }
+      if (result || child === null) { return; }
+      if (value === child.value) { result = true; }
       value > child.value ? checkValue(child.right) : checkValue(child.left);
     };
+
     checkValue(this);
     return result;
   }
 
-  depthFirstLog(cb) {
+  depthFirstLog(cb) { // time complexity: linear
 
-    var invokeCb = function (tree) {
+    var invokeCb = function(tree) {
       cb(tree.value);
       if (tree.left) { invokeCb(tree.left); }
       if (tree.right) { invokeCb(tree.right); }
     };
+
     invokeCb(this);
   }
 }
