@@ -2,19 +2,15 @@ var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
 
-  // your code here
   newTree.children = [];
   _.extend(newTree, treeMethods);
   return newTree;
 };
 
-
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-  // call a new tree
   var child = new Tree(value);
-  // push it to newTree children
   this.children.push(child);
 };
 
