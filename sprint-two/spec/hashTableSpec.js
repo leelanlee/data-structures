@@ -73,4 +73,19 @@ describe('hashTable', function() {
     hashTable.remove('Mr.');
     expect(hashTable._limit).to.equal(8);
   });
+
+  it ('should not exceed the size limit', function() {
+    _.each(Nine, function(person) {
+      var firstName = person[0];
+      var lastName = person[1];
+      hashTable.insert(firstName, lastName);
+    });
+    var counter = 0;
+    for (var key in hashTable) {
+      if (typeof +key === 'number') { counter++; }
+    }
+    expect(counter <= 8).to.equal(true);
+  });
 });
+
+

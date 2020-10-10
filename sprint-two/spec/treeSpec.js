@@ -41,4 +41,16 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it ('should correctly detect nested four levels deep children', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.addChild(7);
+    tree.children[0].addChild(10);
+    tree.children[0].children[0].addChild(8);
+    tree.children[0].children[0].children[0].addChild(12);
+    expect(tree.contains(12)).to.equal(true);
+
+  });
+
+
 });
